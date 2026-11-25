@@ -1,0 +1,11 @@
+
+select 
+	codepayee, firstname, lastname
+from py_payee where codePayee in
+
+(select cast(gpid as nvarchar) from
+(
+select distinct gpid from _tb_temp_gpids_bonus_team_upload_tk
+except
+select  distinct gpid from _tb_temp_gpids_tk
+) t)
